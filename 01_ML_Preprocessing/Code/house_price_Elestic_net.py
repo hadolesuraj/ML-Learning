@@ -1,18 +1,16 @@
-import pandas as pd
+import pandas as pd 
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import ElasticNet
+from sklearn.metrics import mean_absolute_error,mean_squared_error,r2_score
+import numpy as np
 
-df= pd.read_excel("Datasets\\rawData\\fetch_california_housing.xlsx")
-#print(df.head)
-#print(df.info())
-#print(df.isnull().sum())
-print(df.corr())
+df = pd.read_excel("C:\\Users\\lenovo\\Downloads\\ML_GIT_Workspace\\ML-Learning\\Datasets\\rawData\\fetch_california_housing.xlsx")
 
-X = df.drop(columns= ["price"])
-y=df["price"]
-print(X)
+X = df.drop(columns=["price"])
+y = df["price"]
+#Checking multi colinerity
 
 vif = pd.DataFrame()
 vif["Features"]=X.columns 
@@ -34,7 +32,7 @@ X_train,X_test,y_train,y_test=train_test_split(X_sclr,y,test_size=0.2,random_sta
 
 print(X_train.shape,X_test.shape)
 
-modal = LinearRegression()
+modal = ElasticNet()
 modal.fit(X_train,y_train)
 
 print("Modal_coef",modal.coef_)
@@ -44,3 +42,13 @@ y_pred = modal.predict(X_test)
 print(y_pred)
 print(y_test)
 
+#evalution matrixs
+#mean squred error------->
+#mean absolute error
+#Root  mean squered error
+#R squre
+
+print("mse->",mean_absolute_error(y_test,y_pred))
+print("mse->",mean_squared_error(y_test,y_pred))
+print("rsme->",np.sqrt(mean_absolute_error(y_test,y_pred)))
+print("R squre->",r2_score(y_test,y_pred))
