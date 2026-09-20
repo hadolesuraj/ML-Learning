@@ -10,7 +10,7 @@ print(df.corr)
 
 X=df.drop(columns=["price"])
 y= df["price"]
-
+e
 vif = pd.DataFrame()
 vif["Features"]= X.columns
 vif["vif"] = [variance_inflation_factor(X,i) for i in range(X.shape[1])]
@@ -37,6 +37,3 @@ print("mse->",mean_absolute_error(y_test,ls_y_pred))
 print("mse->",mean_squared_error(y_test,ls_y_pred))
 print("rsme->",np.sqrt(mean_absolute_error(y_test,ls_y_pred)))
 print("R squre->",r2_score(y_test,ls_y_pred))
-
-
-
