@@ -45,11 +45,13 @@ for i in range (1000):
     sample = df["Monthly_Spending"].sample(n=100)
     sample_means.append(sample.mean())
     
-sample_means = np.array(sample_means)
-
+    sample_means = np.array(sample_means)
 print("\nNumber of sample means:", len(sample_means))
-print("Mean of sample means:", sample_means.mean())    
-    ############  i have checked the mean of population and mean of 1000 sample is close to same,
+print("Mean of sample means:", sample_means.mean())  
+
+\
+# the clt is used -->if the Data is huge to calculate mean
+############  i have checked the mean of population and mean of 1000 sample is close to same,
 #################Now we must check the confidance interval of the main 
 
 
@@ -63,7 +65,7 @@ sample_std = sample.std(ddof=1) # degree of freedom is n as it is the sample dat
 print(sample_std)
 #standard error calculation formula 
 standard_error = sample_std/np.sqrt(sample_size)
-print(standard_error)#156
+print(standard_error)
 #आपण Sample Size च्या वर्गमुळाने का भागतो?
 ##जसजसा तुमचा Sample Size वाढतो (उदा. १०० ऐवजी ५०० ग्राहक घेतले), तसतसा तुमचा अंदाज जास्त अचूक होतो आणि 
 #तुमची 'चूक' (Error) कमी होते. गणिताच्या (Statistics च्या) नियमानुसार ही त्रुटी Sample Size च्या 
@@ -86,7 +88,7 @@ for i in range(100):
     sample = df["Monthly_Spending"].sample(n=100)
 
     mean = sample.mean()
-    std = sample.std(ddof=1)
+    std = sample.std(ddof=1)# for calculating the mean of sample data as bassels correction 
 
     se = std / np.sqrt(100)
 
